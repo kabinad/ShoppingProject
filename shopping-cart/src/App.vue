@@ -3,7 +3,7 @@
     <h1 id="title">Shopping List</h1>
     <!-- <HelloWorld></HelloWorld> -->
     <AddItemComponent></AddItemComponent>
-    <ItemComponent v-bind:item="item"></ItemComponent>
+    <ItemsComponent :items="items"></ItemsComponent>
     </div>
 </template>
 
@@ -11,7 +11,8 @@
 import HelloWorld from './components/HelloWorld'
 import ProductList from './components/ProductList'
 import AddItemComponent from './components/ShoppingList/AddItemComponent'
-import ItemComponent from './components/ShoppingList/ItemComponent'
+import ItemsComponent from './components/ShoppingList/ItemsComponent'
+import ChangeTitleComponent from './components/ShoppingList/ChangeTitleComponent'
 
 import Vue from 'vue';
 
@@ -21,18 +22,38 @@ export default {
     ProductList,
     HelloWorld,
     AddItemComponent,
-    ItemComponent
+    ItemsComponent,
+    ChangeTitleComponent
   },
-  data:function(){
-    return {
-      item : 'test'
+  data () {
+      return {
+        items: [{ text: 'Bananas', checked: true },
+                { text: 'Apples', checked: false }],
+        title: 'My Shopping List'
+      }
+  },
+  methods: {
+      addItem (text) {
+        this.items.push({
+          text: text,
+          checked: false
+        })
+      }
     }
   }
-}
 
 </script>
 
 <style>
+.container {
+    width: 40%;
+    margin: 20px auto 0px auto;
+  }
+  .footer {
+    font-size: 0.7em;
+    margin-top: 20vh;
+  }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
